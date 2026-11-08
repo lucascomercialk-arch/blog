@@ -1,3 +1,9 @@
+import importlib.util
+from pathlib import Path
+_rich_spec = importlib.util.spec_from_file_location("blog_rich", Path(__file__).with_name("rich_text.py"))
+_rich = importlib.util.module_from_spec(_rich_spec)
+_rich_spec.loader.exec_module(_rich)
+
 """Build a portable static blog from approved posts; no runtime or third-party dependencies."""
 from datetime import datetime
 import hashlib
@@ -59,7 +65,7 @@ def article_body(content, cover_src, stamp, navigation=True):
     return (f'<article class="article">{back}<header><span class="eyebrow">{escape(content["category"])}</span>'
             f'<h1>{escape(content["title"])}</h1>{project_tag(content,"../",navigation)}<p class="byline">Lucas Kammer · {escape(stamp)} · {minutes} min de leitura</p></header>'
             f'<img class="article-cover" src="{escape(cover_src, quote=True)}" alt="{escape(alt, quote=True)}">{credit}'
-            f'<div class="prose">{paragraphs(content["body"])}</div>{end}</article>')
+            f'<div class="prose">{(_rich.render_document(content["document"]) if content.get("document") is not None else paragraphs(content["body"]))}</div>{end}</article>')
 
 
 def cover_path(post):
@@ -97,6 +103,11 @@ def build(root=ROOT):
                 if not isinstance(post[key],str) or len(post[key])>(300 if key=='cover_alt' else 200):
                     raise ValueError('Metadados de capa inválidos.')
                 approved[key]=post[key]
+        if post.get('document') is not None:
+            _rich.validate_document(post['document'])
+            if _rich.plain_text(post['document']).strip() != post['body']:
+                raise ValueError('Texto e formatação divergentes.')
+            approved['document'] = post['document']
         if 'project' in post:
             project=post['project']
             validate_project(project)
