@@ -1,15 +1,21 @@
-# Blog de Lucas Kammer
+# Ideias que merecem sair da cabeça.
 
-Site estático preparado para GitHub Pages, sem dependências Python adicionais.
+Sou Lucas Kammer, estudante de Engenharia de Software. Este blog é um espaço para compartilhar ideias, experiências e o que vou aprendendo pelo caminho.
+
+Inteligência artificial, tecnologia e projetos despertam minha curiosidade. Mas também quero deixar espaço para perguntas e reflexões que surgem fora da tela.
+
+A proposta é simples: escrever com a minha voz e abrir espaço para uma boa conversa.
+
+## Sobre este espaço
+
+Este é um blog pessoal sobre tecnologia, inteligência artificial, projetos e outros assuntos que merecem ser pensados e compartilhados. Mais do que apresentar respostas prontas, quero registrar descobertas, dividir experiências e convidar você a conversar.
+
+## Como gerar o site
+
+O site é estático e preparado para o GitHub Pages. Para gerar os arquivos, execute:
 
 ```bash
 python3 build.py
 ```
 
-O resultado fica em `dist/`. Links relativos funcionam em um domínio próprio ou no caminho de um repositório do GitHub Pages. Em Settings → Pages, selecionar GitHub Actions como origem. O workflow `Publicar blog` compila e publica após um push em `main`.
-
-O Quill altera somente `content/posts.json`, após autorização explícita para uma versão. O manifesto inicial está vazio: nenhum texto de exemplo é publicado como artigo do autor. Parágrafos e quebras de linha são preservados; HTML é exibido como texto, nunca executado. Markdown avançado ainda não é interpretado.
-
-A paisagem foi gerada para reproduzir a direção visual aprovada. Nesta primeira entrega ela também é a única capa disponível; geração de capas por API será uma integração separada. O painel mostra a mesma imagem antes da aprovação.
-
-Este repositório público deve conter somente o site e artigos aprovados. Não copiar o projeto Atlas, rascunhos privados, dados SQLite, credenciais ou workflows n8n para cá.
+O resultado fica na pasta `dist/`. Nas configurações do repositório, selecione GitHub Actions como origem do GitHub Pages.
