@@ -10,12 +10,3 @@ A proposta é simples: escrever com a minha voz e abrir espaço para uma boa con
 
 Este é um blog pessoal sobre tecnologia, inteligência artificial, projetos e outros assuntos que merecem ser pensados e compartilhados. Mais do que apresentar respostas prontas, quero registrar descobertas, dividir experiências e convidar você a conversar.
 
-## Como gerar o site
-
-O site é estático e preparado para o GitHub Pages. Para gerar os arquivos, execute:
-
-```bash
-python3 build.py
-```
-
-O resultado fica na pasta `dist/`. Nas configurações do repositório, selecione GitHub Actions como origem do GitHub Pages.
