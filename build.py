@@ -17,8 +17,24 @@ import shutil
 ROOT = Path(__file__).resolve().parent
 
 
+CSP_POLICY = "default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; base-uri 'self'; form-action 'none'"
+
+
+def _safe_output_path(output_root: Path, *parts: str) -> Path:
+    """Resolve an output path and ensure it remains strictly inside output_root."""
+    base = output_root.resolve()
+    target = base.joinpath(*parts).resolve()
+    try:
+        target.relative_to(base)
+    except ValueError as exc:
+        raise ValueError('Caminho de saída inválido.') from exc
+    if target == base:
+        raise ValueError('Caminho de saída inválido.')
+    return target
+
+
 def page(title, body, prefix='', description='Tecnologia, inteligência artificial e o que aprendo pelo caminho.'):
-    return f'''<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{escape(description,quote=True)}"><title>{escape(title)} · Lucas Kammer</title><link rel="icon" href="{prefix}assets/favicon.svg"><link rel="stylesheet" href="{prefix}assets/style.css"><script src="{prefix}assets/site.js" defer></script></head><body><a class="skip" href="#conteudo">Ir para o conteúdo</a><header class="header"><a class="wordmark" href="{prefix}index.html">lucas kammer <span>✦</span></a><nav aria-label="Principal"><a href="{prefix}index.html#textos">Textos</a><a href="{prefix}projetos.html">Projetos</a><a href="{prefix}sobre.html">Sobre</a><a class="search-link" href="{prefix}index.html#busca" aria-label="Buscar textos">⌕</a></nav></header><main id="conteudo">{body}</main><footer><span>Um espaço pessoal para ideias que merecem sair da cabeça.</span><a href="https://github.com/lucascomercialk-arch" target="_blank" rel="noreferrer">GitHub ↗</a></footer></body></html>'''
+    return f'''<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="{CSP_POLICY}"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="description" content="{escape(description,quote=True)}"><title>{escape(title)} · Lucas Kammer</title><link rel="icon" href="{prefix}assets/favicon.svg"><link rel="stylesheet" href="{prefix}assets/style.css"><script src="{prefix}assets/site.js" defer></script></head><body><a class="skip" href="#conteudo">Ir para o conteúdo</a><header class="header"><a class="wordmark" href="{prefix}index.html">lucas kammer <span>✦</span></a><nav aria-label="Principal"><a href="{prefix}index.html#textos">Textos</a><a href="{prefix}projetos.html">Projetos</a><a href="{prefix}sobre.html">Sobre</a><a class="search-link" href="{prefix}index.html#busca" aria-label="Buscar textos">⌕</a></nav></header><main id="conteudo">{body}</main><footer><span>Um espaço pessoal para ideias que merecem sair da cabeça.</span><a href="https://github.com/lucascomercialk-arch" target="_blank" rel="noopener noreferrer">GitHub ↗</a></footer></body></html>'''
 
 
 def paragraphs(text):
@@ -78,7 +94,7 @@ def cover_path(post):
 
 
 def build(root=ROOT):
-    manifest=json.loads((root/'content/posts.json').read_text())
+    manifest=json.loads((root/'content/posts.json').read_text(encoding='utf-8'))
     if manifest.get('schema_version') != 1 or not isinstance(manifest.get('posts'),list):
         raise ValueError('Manifesto de artigos inválido.')
     posts=manifest['posts']; ids=set(); projects={}
@@ -91,7 +107,11 @@ def build(root=ROOT):
             raise ValueError('Categoria ou capa inválida.')
         if not isinstance(post.get('body'),str) or not 10<=len(post['body'])<=40000 or not 3<=len(post.get('title',''))<=160:
             raise ValueError('Texto inválido.')
+        if not isinstance(post.get('published_at'), str):
+            raise ValueError('Data de publicação inválida.')
         datetime.fromisoformat(post['published_at'])
+        if type(post.get('version')) is not int or post['version'] < 1:
+            raise ValueError('Versão do artigo inválida.')
         expected_cover = cover_sha if post['cover']=='paisagem' else hashlib.sha256((root/cover_path(post)).read_bytes()).hexdigest()
         if post.get('cover_sha256') != expected_cover or (post['cover']!='paisagem' and post['cover']!=expected_cover):
             raise ValueError('A capa mudou depois da aprovação.')
@@ -119,27 +139,31 @@ def build(root=ROOT):
             raise ValueError('Aprovação ou descrição de capa inválida.')
         if hashlib.sha256(json.dumps(approved,ensure_ascii=False,sort_keys=True).encode()).hexdigest()!=post.get('digest'):
             raise ValueError('Conteúdo difere da versão aprovada.')
+    assets_dir = root/'assets'
+    if assets_dir.is_symlink() or any(entry.is_symlink() for entry in assets_dir.rglob('*')):
+        raise ValueError('Ativo simbólico não permitido.')
     output=root/'dist'
     if output.is_symlink():raise ValueError('Saída não pode ser link.')
     if output.exists():shutil.rmtree(output)
     (output/'textos').mkdir(parents=True)
     (output/'projetos').mkdir()
-    shutil.copytree(root/'assets',output/'assets')
+    shutil.copytree(assets_dir, output/'assets', symlinks=False)
     cards=[]
     for post in sorted(posts,key=lambda p:p['published_at'],reverse=True):
         stamp=datetime.fromisoformat(post['published_at']).strftime('%d/%m/%Y')
-        href='textos/'+post['id']+'.html'
         cards.append(post_card(post))
         article=article_body(post, '../'+cover_path(post), stamp)
-        (output/href).write_text(page(post['title'],article,'../',post['body'][:150]))
+        _safe_output_path(output, 'textos', post['id']+'.html').write_text(
+            page(post['title'],article,'../',post['body'][:150]), encoding='utf-8'
+        )
     empty='<div class="empty"><span>✦</span><h3>As primeiras ideias estão tomando forma.</h3><p>Os textos aparecerão aqui conforme forem publicados.</p></div>'
     body='''<section class="hero" aria-label="Apresentação"><div class="hero-copy"><span class="eyebrow">IDEIAS EM CONSTRUÇÃO</span><h1>Pensar. Criar.<br>Compartilhar.</h1><p>Tecnologia, inteligência artificial e o que aprendo pelo caminho.</p><a class="pill" href="#textos">Explorar os textos <span>↗</span></a></div><span class="signature">Por Lucas Kammer</span></section><section id="textos" class="posts"><div class="section-heading"><h2>Últimas ideias</h2><div class="filters" aria-label="Filtrar textos">'''
     for name in ('Todos','Inteligência artificial','Tecnologia','Projetos','Reflexões'):
         body+=f'<button data-filter="{escape(name,quote=True)}" aria-pressed="{str(name=="Todos").lower()}">{escape(name)}</button>'
     body+='</div></div><label class="search" id="busca"><span>Buscar nos textos</span><input type="search" placeholder="Um assunto, uma ideia…" aria-label="Buscar nos textos"></label><div class="post-grid">'+(''.join(cards) if cards else empty)+'</div><p id="no-results" hidden>Nenhum texto encontrado. Experimente outro assunto.</p></section>'
-    (output/'index.html').write_text(page('Ideias em construção',body))
+    _safe_output_path(output, 'index.html').write_text(page('Ideias em construção',body), encoding='utf-8')
     about='''<section class="about"><span class="eyebrow">SOBRE ESTE ESPAÇO</span><h1>Ideias que merecem<br>sair da cabeça.</h1><div class="prose"><p>Sou Lucas Kammer, estudante de Engenharia de Software. Este blog é um espaço para compartilhar ideias, experiências e o que vou aprendendo pelo caminho.</p><p>Inteligência artificial, tecnologia e projetos despertam minha curiosidade. Mas também quero deixar espaço para perguntas e reflexões que surgem fora da tela.</p><p>A proposta é simples: escrever com a minha voz e abrir espaço para uma boa conversa.</p></div><a class="pill dark" href="index.html#textos">Explorar os textos ↗</a></section>'''
-    (output/'sobre.html').write_text(page('Sobre',about))
+    _safe_output_path(output, 'sobre.html').write_text(page('Sobre',about), encoding='utf-8')
     project_cards=[]
     for project in sorted(projects.values(), key=lambda p:p['name'].casefold()):
         members=sorted((p for p in posts if p.get('project',{}).get('id')==project['id']),
@@ -151,13 +175,15 @@ def build(root=ROOT):
                 f'<header class="project-heading"><span class="eyebrow">PROJETO</span><h1>{title}</h1><p>{description}</p>'
                 f'<small>{count} · Do primeiro relato ao mais recente</small></header><div class="post-grid">'
                 +''.join(post_card(p,'../') for p in members)+'</div></section>')
-        (output/'projetos'/f'{project["id"]}.html').write_text(page(project['name'],detail,'../',project['description'] or project['name']))
+        _safe_output_path(output, 'projetos', f'{project["id"]}.html').write_text(
+            page(project['name'],detail,'../',project['description'] or project['name']), encoding='utf-8'
+        )
     project_intro='<section class="posts"><header class="project-heading"><span class="eyebrow">PERCURSOS EM CONSTRUÇÃO</span><h1>Projetos</h1><p>Experiências contadas em capítulos. Os mesmos textos do blog, reunidos pelo que têm em comum.</p></header>'
     project_empty='<div class="empty"><h3>Os próximos projetos começam aqui.</h3><p>As coleções aparecerão com o primeiro texto publicado.</p><a href="index.html#textos">Enquanto isso, explore os textos ↗</a></div>'
-    (output/'projetos.html').write_text(page('Projetos',project_intro+('<div class="project-grid">'+''.join(project_cards)+'</div>' if project_cards else project_empty)+'</section>'))
-    (output/'404.html').write_text(page('Página não encontrada','<section class="about"><h1>Esse caminho ainda não existe.</h1><p>Volte à página inicial para encontrar os textos.</p></section>'))
-    (output/'publications.json').write_text(json.dumps({'schema_version':1, 'commit':os.environ.get('GITHUB_SHA',''), 'posts':[{'id':p['id'],'version':p['version'],'approval_digest':p.get('approval_digest',p['digest'])} for p in posts]}))
-    (output/'.nojekyll').touch()
+    _safe_output_path(output, 'projetos.html').write_text(page('Projetos',project_intro+('<div class="project-grid">'+''.join(project_cards)+'</div>' if project_cards else project_empty)+'</section>'), encoding='utf-8')
+    _safe_output_path(output, '404.html').write_text(page('Página não encontrada','<section class="about"><h1>Esse caminho ainda não existe.</h1><p>Volte à página inicial para encontrar os textos.</p></section>'), encoding='utf-8')
+    _safe_output_path(output, 'publications.json').write_text(json.dumps({'schema_version':1, 'commit':os.environ.get('GITHUB_SHA',''), 'posts':[{'id':p['id'],'version':p['version'],'approval_digest':p.get('approval_digest',p['digest'])} for p in posts]}), encoding='utf-8')
+    _safe_output_path(output, '.nojekyll').touch()
     return output
 
 
