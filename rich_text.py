@@ -46,10 +46,14 @@ def validate_document(doc):
                     if not isinstance(a, dict) or set(a) - {'href', 'target', 'rel', 'class', 'title'}:
                         raise ValueError('Link inválido.')
                     href = a.get('href', '')
-                    if not isinstance(href, str) or len(href) > 2000 or any(ord(c) < 32 for c in href):
+                    if not isinstance(href, str) or len(href) > 2000 or href != href.strip() or any(ord(c) < 32 for c in href):
                         raise ValueError('Link inválido.')
                     u = urlsplit(href)
-                    if u.scheme not in ('https', 'http', 'mailto') or (u.scheme != 'mailto' and (not u.hostname or u.username or u.password)):
+                    if (
+                        u.scheme not in ('https', 'http', 'mailto')
+                        or (u.scheme == 'mailto' and (u.netloc or not u.path))
+                        or (u.scheme != 'mailto' and (not u.hostname or u.username or u.password))
+                    ):
                         raise ValueError('Use links http, https ou mailto.')
                 elif mark.get('type') not in MARKS or mark.get('attrs'):
                     raise ValueError('Marca não suportada.')
