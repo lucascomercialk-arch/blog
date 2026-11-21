@@ -35,6 +35,337 @@
       "approval_digest": "ebcf9c480beb7f2fa90b09260453ac4a75112e892fd5fb42c67c985c43c8df55",
       "published_at": "2026-11-07T22:18:18.874081+00:00",
       "updated_at": "2026-11-07T22:18:18.874081+00:00"
+    },
+    {
+      "title": "Segunda Aula - 14/11/2026",
+      "body": "Sabe o que mais me chamou a atenção nessa segunda aula que tivemos?\n\nComo, mesmo com pouco conhecimento, recursos limitados e algumas dificuldades, os alunos têm uma vontade enorme de aprender, sabe?\n\nVocê percebe isso na forma como prestam atenção, participam da aula e fazem perguntas realmente pertinentes ao assunto.\n\nIsso é particularmente muito interessante e curioso, principalmente porque hoje fui pego de surpresa logo ao acordar kkkkk.\n\nMas vamos contextualizar.\n\nApós a primeira aula, criamos um grupo com os alunos, onde compartilhei os materiais utilizados e deixei um espaço para que pudessem tirar dúvidas (coisa que não aconteceu, mas tudo certo kkkkk).\n\nComo relatei no texto anterior, eles demonstraram interesse em conteúdos mais técnicos para os próximos encontros. Então, resolvi enviar uma enquete no grupo com três possíveis assuntos.\n\nAdivinha?\n\nCada um votou em uma opção diferente.\n\nExatamente. Continuávamos sem um assunto definido kkkkk.\n\nConversando com o grupo dos \"professores\", praticamente ficou decidido que ensinaríamos JavaScript.\n\nPorém, JavaScript não é uma linguagem sobre a qual eu tenha conhecimento ou domínio suficiente para me sentir confortável ensinando outras pessoas. Por isso, outro voluntário ficou responsável por preparar e conduzir a segunda aula.\n\nDurante a semana, com meus compromissos e tudo mais, praticamente nem me lembrei da aula.\n\nPorém, todavia, entretanto...\n\nAo acordar no sábado de manhã e olhar o celular, me deparei com uma mensagem enviada às quatro horas da madrugada: o voluntário responsável pela aula não conseguiria comparecer.\n\nO motivo não foi informado, mas também não vem ao caso.\n\nO problema é que, faltando aproximadamente uma hora e meia para o início da aula, estávamos sem alguém preparado para ensinar o conteúdo e sem material para apresentar.\n\nMais um sábado tranquilo, né? Kkkkkkk.\n\nComo eu já tinha a estrutura dos slides da primeira aula, resolvi aproveitar o que havia preparado e montar rapidamente um conteúdo introdutório de Python.\n\nE foi assim que, em pouco mais de uma hora, tivemos que mudar praticamente todo o planejamento da segunda aula.\n\nApesar do susto e do imprevisto, posso dizer que a aula foi extremamente produtiva.\n\nE volto ao que comentei logo no começo deste texto: é muito gratificante ver o empenho dos alunos, a atenção que demonstram e o interesse genuíno pelo conteúdo que estamos compartilhando.\n\nMesmo com todas as limitações e dificuldades, eles estão ali, dispostos a aprender algo novo.\n\nIsso é algo que realmente me chama a atenção.\n\nJá havia comentado no relato da primeira aula, mas é uma sensação muito boa poder ensinar e compartilhar conhecimento com outras pessoas.\n\nE, sinceramente, quanto mais participo dessas aulas, mais vontade tenho de continuar fazendo isso.\n\nComo nosso projeto atual terá apenas quatro encontros, comecei a pensar em uma possibilidade: por que não criar um projeto próprio para continuar oferecendo aulas de tecnologia para pessoas que não têm tantas oportunidades de acesso a esse tipo de conhecimento?\n\nAlgo como \"Tecnologia para Todos\".\n\nA ideia ainda está no começo. Quero organizar melhor a proposta, pensar em como funcionaria, quais conteúdos poderíamos oferecer e como tornar tudo isso possível de forma voluntária.\n\nAinda tenho bastante coisa para pensar e estruturar antes de apresentar o projeto e avaliar uma possível continuidade.\n\nMas achei interessante compartilhar essa ideia desde agora, justamente porque ela surgiu a partir dessas experiências nas oficinas.\n\nQuem diria que algumas aulas de programação poderiam acabar despertando a vontade de construir algo maior, né?\n\nDe qualquer forma, ainda temos mais duas aulas pela frente, e pretendo compartilhar os próximos acontecimentos por aqui.",
+      "category": "Projetos",
+      "cover": "32c6cd489e99adc9fdf67219c522bd63936486874420260741f27c531cf9bc60",
+      "cover_alt": "Classroom",
+      "cover_credit": "",
+      "document": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Sabe o que mais me chamou a atenção nessa segunda aula que tivemos?"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Como, mesmo com pouco conhecimento, recursos limitados e algumas dificuldades, os alunos têm uma vontade enorme de aprender, sabe?"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Você percebe isso na forma como prestam atenção, participam da aula e fazem perguntas realmente pertinentes ao assunto."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Isso é particularmente muito interessante e curioso, principalmente porque hoje fui pego de surpresa logo ao acordar kkkkk."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Mas vamos contextualizar."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Após a primeira aula, criamos um grupo com os alunos, onde compartilhei os materiais utilizados e deixei um espaço para que pudessem tirar dúvidas (coisa que não aconteceu, mas tudo certo kkkkk)."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Como relatei no texto anterior, eles demonstraram interesse em conteúdos mais técnicos para os próximos encontros. Então, resolvi enviar uma enquete no grupo com três possíveis assuntos."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Adivinha?"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Cada um votou em uma opção diferente."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Exatamente. Continuávamos sem um assunto definido kkkkk."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Conversando com o grupo dos \"professores\", praticamente ficou decidido que ensinaríamos JavaScript."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Porém, JavaScript não é uma linguagem sobre a qual eu tenha conhecimento ou domínio suficiente para me sentir confortável ensinando outras pessoas. Por isso, outro voluntário ficou responsável por preparar e conduzir a segunda aula."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Durante a semana, com meus compromissos e tudo mais, praticamente nem me lembrei da aula."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Porém, todavia, entretanto..."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Ao acordar no sábado de manhã e olhar o celular, me deparei com uma mensagem enviada às quatro horas da madrugada: o voluntário responsável pela aula não conseguiria comparecer."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "O motivo não foi informado, mas também não vem ao caso."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "O problema é que, faltando aproximadamente uma hora e meia para o início da aula, estávamos sem alguém preparado para ensinar o conteúdo e sem material para apresentar."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Mais um sábado tranquilo, né? Kkkkkkk."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Como eu já tinha a estrutura dos slides da primeira aula, resolvi aproveitar o que havia preparado e montar rapidamente um conteúdo introdutório de Python."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "E foi assim que, em pouco mais de uma hora, tivemos que mudar praticamente todo o planejamento da segunda aula."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Apesar do susto e do imprevisto, posso dizer que a aula foi extremamente produtiva."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "E volto ao que comentei logo no começo deste texto: é muito gratificante ver o empenho dos alunos, a atenção que demonstram e o interesse genuíno pelo conteúdo que estamos compartilhando."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Mesmo com todas as limitações e dificuldades, eles estão ali, dispostos a aprender algo novo."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Isso é algo que realmente me chama a atenção."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Já havia comentado no relato da primeira aula, mas é uma sensação muito boa poder ensinar e compartilhar conhecimento com outras pessoas."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "E, sinceramente, quanto mais participo dessas aulas, mais vontade tenho de continuar fazendo isso."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Como nosso projeto atual terá apenas quatro encontros, comecei a pensar em uma possibilidade: "
+              },
+              {
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "text": "por que não criar um projeto próprio para continuar oferecendo aulas de tecnologia para pessoas que não têm tantas oportunidades de acesso a esse tipo de conhecimento?"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Algo como \"Tecnologia para Todos\"."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "A ideia ainda está no começo. Quero organizar melhor a proposta, pensar em como funcionaria, quais conteúdos poderíamos oferecer e como tornar tudo isso possível de forma voluntária."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Ainda tenho bastante coisa para pensar e estruturar antes de apresentar o projeto e avaliar uma possível continuidade."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Mas achei interessante compartilhar essa ideia desde agora, justamente porque ela surgiu a partir dessas experiências nas oficinas."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Quem diria que algumas aulas de programação poderiam acabar despertando a vontade de construir algo maior, né?"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "De qualquer forma, ainda temos mais duas aulas pela frente, e pretendo compartilhar os próximos acontecimentos por aqui."
+              }
+            ]
+          }
+        ]
+      },
+      "project": {
+        "name": "Projeto Aulas para Migrantes",
+        "description": "O projeto Aulas para Migrantes é uma iniciativa voluntária que busca compartilhar conhecimento e oferecer oportunidades de aprendizado para migrantes que tenham interesse em conhecer um pouco mais sobre tecnologia.\n\nA Católica de Santa Catarina, em parceria com o Clube Rotaract, está oferecendo duas oficinas:\n\nInformática Básica\n\nProgramação Básica\n\nEstou participando do grupo responsável pela oficina de Programação Básica, que será dividida em quatro encontros de aproximadamente duas horas cada",
+        "id": "10f2ca2a58a8"
+      },
+      "cover_sha256": "32c6cd489e99adc9fdf67219c522bd63936486874420260741f27c531cf9bc60",
+      "id": "db277cae9c48",
+      "version": 4,
+      "digest": "8b71ab0a38b12f29fdaf660c18ebbca0b327a10a28a28545f377b00080d07937",
+      "approval_digest": "cf86c9b82d3a6b41fae1cbea166bf113fe0d14be030f42aba3ddd18c2bb3ebf4",
+      "published_at": "2026-11-21T21:28:30.237155+00:00",
+      "updated_at": "2026-11-21T21:28:30.237155+00:00"
     }
   ]
 }
